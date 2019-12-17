@@ -1,0 +1,74 @@
+<%- include header.ejs -%>
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Hozzáadás / szerkesztés</h1>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row justify-content-center">
+          <div class="col-sm-6">
+            <p></p>
+            <form class="form-signin">
+              <label for="input" class="sr-only">Poem</label>
+              <input
+                type="text"
+                id="poemTitle"
+                class="form-control"
+                placeholder="Cím"
+                required
+                autofocus
+              />
+              <br />
+              <label for="input" class="sr-only">pic</label>
+              <input
+                type="text"
+                id="poemImageLink"
+                class="form-control"
+                placeholder="Kép link"
+              />
+              <br />
+
+              <div class="input-group">
+                <!--div class="input-group-prepend">
+                  <span class="input-group-text">Mű helye</span>
+                </div-->
+                <textarea
+                  placeholder="A műved"
+                  class="form-control"
+                  aria-label="A műved"
+                  id="poemText"
+                ></textarea>
+              </div>
+              <br />
+              <div class="btn-group">
+                <a href="/home">
+                  <button
+                    class="btn btn-lg btn-themed btn-block"
+                    type="button"
+                  >
+                    Kész!
+                  </button>
+                </a>
+                &nbsp; &nbsp; &nbsp;
+                <a href="/home">
+                  <button
+                    class="btn btn-lg btn-themed btn-block"
+                    type="button"
+                  >
+                    Mégse
+                  </button>
+                </a>
+              </div>
+              <br />
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /container -->
+    </main>
+    <br />
+    <%- include footer.ejs -%>

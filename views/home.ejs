@@ -1,0 +1,56 @@
+<%- include header.ejs -%>
+<%- include navbar.ejs -%>  
+</nav>
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3"><%= poems[0]._poet.ref %></h1>
+          <p>
+            Eius, modi! Illum reprehenderit fugit dolore recusandae laboriosam,
+            hic nemo quos.
+          </p>
+        </div>
+      </div>
+      <div class="container">
+        <p>
+          <a href="/home/new">
+            <button type="button" class="btn btn-themed">
+              <i class="material-icons md-24" style="line-height: 1.4;">
+                add_box
+              </i>
+              <span style="vertical-align: super;">új vers</span>
+            </button>
+          </a>
+        </p>
+      </div>
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <% poems.forEach(function(poem){ %>
+          <div class="col-md-4" style="text-align: center">
+            <h2><%= poem.title %></h2>
+            <p>
+             <%= poem.text %>
+            </p>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                <i class="material-icons md-24">delete</i>
+              </button>
+              <a href="/home/new">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <i class="material-icons md-24">edit</i>
+                </button>
+              </a>
+            </div>
+          </div>
+          <% }); %>
+        
+        </div>
+
+        <hr />
+      </div>
+      <!-- /container -->
+    </main>
+
+<%- include footer.ejs-%>

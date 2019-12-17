@@ -1,0 +1,64 @@
+<%- include header.ejs -%>
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Regisztráció</h1>
+        </div>
+      </div>
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row justify-content-center">
+          <div class="col-sm-3">
+            <p></p>
+            <form method="POST">
+              <input
+                type="email"
+                id="inputEmail"
+                class="form-control"
+                placeholder="Email cím"
+                name="email" id="email"
+                required
+                autofocus
+              />
+              <br />
+              <input
+                type="text"
+                id="inputName"
+                name="name" id="name"
+                class="form-control"
+                placeholder="Név"
+                required
+              />
+              <br />
+              <input
+                type="password"
+                id="inputPassword"
+                name="password" id="password"
+                class="form-control"
+                placeholder="Jelszó"
+                required
+              />
+              <br />
+              <input
+                type="password"
+                id="inputPassword2"
+                name="password2" id="password2"
+                class="form-control"
+                placeholder="Jelszó mégegyszer"
+                required
+              />
+              <center>
+              <br />
+              <input type="submit" class="btn btn-warning" value="Regisztráció" href="/index"/>
+              <br />
+              </center>
+            </form>
+            <br/>
+          </div>
+        </div>
+      </div>
+      <!-- /container -->
+    </main>
+
+    <%- include footer.ejs -%>
