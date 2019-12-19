@@ -28,11 +28,13 @@
               <br />
               <label for="input" class="sr-only">pic</label>
               <input
+              value="<%= (typeof poem !== 'undefined') ? poem.picturelink : '' %>"
                 type="text"
                 name="piclink"
                 id="piclink"
                 class="form-control"
                 placeholder="Kép link"
+                required
               />
               <br />
 
@@ -46,6 +48,7 @@
                   name="text"
                   id="text"
                   aria-label="A műved"
+                  required
                 ><%=  (typeof poem !== 'undefined') ? poem.text : '' %></textarea>
               </div>
               <br />

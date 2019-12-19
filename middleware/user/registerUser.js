@@ -18,7 +18,7 @@ module.exports = objRepo => async (req, res, next) => {
 
   //javascript falsy
   if (eredmeny) {
-    res.tpl.error.push("Your email address is already registered!");
+    res.tpl.error.push("Ez az email cím már foglalt!");
     return next();
   }
 

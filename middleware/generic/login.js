@@ -17,13 +17,13 @@ module.exports = objRepo => async (req, res, next) => {
 
   //javascript falsy
   if (!result) {
-    res.tpl.error.push("Your email address is not registered!");
+    res.tpl.error.push("Az email cím nincs regisztrálva!");
     return next();
   }
 
   //check password
   if (result.password !== req.body.password) {
-    res.tpl.error.push("Wrong password!");
+    res.tpl.error.push("Hibás jelszó");
     return next();
   }
   req.session.loggedin = true;

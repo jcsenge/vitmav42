@@ -31,7 +31,7 @@
               <div class="card mb-4 box-shadow">
                 <img
                   class="card-img-top"
-                  src="img/placeholder-1.jpg"
+                  src="<%=poem.picturelink %>"
                   alt="Card image cap"
                 />
                 <div class="card-body">
@@ -39,8 +39,7 @@
                         <h3><%= poem.title %></h3>
                       </p>
                   <p class="card-text">
-                    <%= poem.text %>
-                  </p>
+                  <pre><%= poem.text %></pre>
                   <p class="card-text">
                     <%= poem._poet.name %>
                   </p>

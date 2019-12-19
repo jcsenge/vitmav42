@@ -31,9 +31,7 @@
             <% poems.forEach(function(poem){ %>
           <div class="col-md-4" style="text-align: center">
             <h2><%= poem.title %></h2>
-            <p>
-             <%= poem.text %>
-            </p>
+            <p><pre><%= poem.text %></pre>
             <div class="btn-group" role="group">
               <a href="/home/del/<%= poem._id %>">
               <button type="button" class="btn btn-sm btn-outline-secondary">
