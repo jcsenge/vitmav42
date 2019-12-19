@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: url(flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format('truetype');
+  src: url(flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format("truetype");
 }
 
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -54,7 +54,7 @@ button.btn-outline-themed:hover {
 }
 
 .bg-dark {
-  background-color: #c8a415!important;
+  background-color: #c8a415 !important;
 }
 
 .navbar-brand {
@@ -70,7 +70,7 @@ button.btn-outline-themed:hover {
 }
 
 .nav-item {
-  color: rgba(255,255,255,.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .nav-item.separator {
@@ -80,7 +80,7 @@ button.btn-outline-themed:hover {
 }
 
 .nav-item.separator > span {
-  border-left: 1px solid rgba(255,255,255,.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
   display: inline-block;
   width: 1px;
   height: 40px;

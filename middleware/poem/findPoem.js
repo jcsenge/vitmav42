@@ -1,19 +1,21 @@
 /**
  * Searching for a poem
  */
-const requireOption = require('../generic/requireOption');
+const requireOption = require("../generic/requireOption");
 
 module.exports = function(objectrepository) {
-  const PoemModel = requireOption(objectrepository, 'PoemModel');
-
+  const PoemModel = requireOption(objectrepository, "poemModel");
   return function(req, res, next) {
-      PoemModel.findOne({ _id: req.params.poemid }, (err, poem) => {
-          if (err || !poem) {
-              return next(err);
-          }
-
-          res.locals.poem = poem;
-          return next();
-      });
+    console.log(req.body.tofind);
+    if(typeof req.body.tofind === 'undefined') {
+       return next(); 
+      }
+    PoemModel.find({ title: req.body.tofind }, (err, poem) => {
+      if (err || !poem) {
+        return next(err);
+      }
+      res.locals.poems = poem;
+      return next();
+    });
   };
 };

@@ -14,7 +14,8 @@
             <!-- .card-body -->
             <div class="card-body">
               <!-- form -->
-              <form method="post">
+              <%- include errorbox.ejs %>
+              <form method="POST">
                 <!-- form row -->
                 <div class="form-row">
                   <!-- form column -->
@@ -23,8 +24,9 @@
                     <input
                       type="text"
                       class="form-control"
+                      name="name"
                       id="name"
-                      value="Akár Miki"
+                      value="<%= user.name %>"
                       required
                     />
                   </div>
@@ -36,8 +38,9 @@
                   <input
                     type="email"
                     class="form-control"
+                    name="email"
                     id="email"
-                    value="akar@mi.ki"
+                    value="<%= user.email %>"
                     required
                   />
                 </div>
@@ -47,6 +50,7 @@
                   <label for="pw">Új jelszó</label>
                   <input
                     type="password"
+                    name="password"
                     class="form-control"
                     id="pw"
                     value="superMagicSecretString"
@@ -58,7 +62,8 @@
                   <input
                     type="password"
                     class="form-control ml-auto mr-3"
-                    id="pw2"
+                    id="passwordagain"
+                    name="passwordagain"
                     placeholder="Jelszó mégegyszer"
                   />
                 </div>
@@ -67,14 +72,14 @@
                 <!-- .form-actions -->
                 <br />
                 <center>
-                  <a href="/home">
-                    <button type="button" class="btn btn-themed">
+                  <a href="/home/profile/<%= user._id %>">
+                    <button type="submit" class="btn btn-themed">
                       Mentés
                     </button>
                   </a>
                 </center>
                 <hr />
-                <a href="/index 11111               ">
+                <a href="/profile/del/<%= user._id %>">
                   <button type="button" class="btn btn-danger">
                     Fiók törlése
                   </button>

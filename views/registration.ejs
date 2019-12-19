@@ -11,6 +11,7 @@
         <div class="row justify-content-center">
           <div class="col-sm-3">
             <p></p>
+            <%- include errorbox.ejs %>
             <form method="POST">
               <input
                 type="email"
@@ -40,18 +41,16 @@
                 required
               />
               <br />
-              <input
-                type="password"
-                id="inputPassword2"
-                name="password2" id="password2"
-                class="form-control"
-                placeholder="Jelszó mégegyszer"
-                required
-              />
               <center>
               <br />
               <input type="submit" class="btn btn-warning" value="Regisztráció" href="/index"/>
-              <br />
+            <a href="/index">
+              <button
+                class="btn btn-warning"
+                type="button">
+                Mégse
+              </button>
+            </a>
               </center>
             </form>
             <br/>

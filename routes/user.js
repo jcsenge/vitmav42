@@ -1,13 +1,14 @@
 var authMW = require("../middleware/generic/auth");
-//var invAuthMW = require("../middleware/generic/inverseAuth");
+var invAuthMW = require("../middleware/generic/invAuth");
+var logoutMW = require("../middleware/generic/logout");
 var renderMW = require("../middleware/generic/render");
-var saveUser = require("../middleware/user/saveUser");
+var editUser = require("../middleware/user/editUser");
 var getUser = require("../middleware/user/getUser");
 var delUser = require("../middleware/user/delUser");
 var registerUser = require("../middleware/user/registerUser");
 
-var userModel = require('../models/user');
-var poemModel = require('../models/poem');
+var userModel = require("../models/user");
+var poemModel = require("../models/poem");
 
 module.exports = function(app) {
   var objectRepository = {
@@ -20,11 +21,9 @@ module.exports = function(app) {
 
   app.use(
     "/register",
-    //invAuthMW(objectRepository),
-    //authMW(objectRepository),
+    authMW(objectRepository, "home"),
     registerUser(objectRepository),
-    //saveUser(objectRepository),
-    renderMW(objectRepository,'registration')
+    renderMW(objectRepository, "registration")
   );
 
   /**
@@ -33,23 +32,19 @@ module.exports = function(app) {
 
   app.use(
     "/home/profile/:userid",
-    //authMW(objectRepository),
-    //getUser(objectRepository),
-    //saveUser(objectRepository),
-    renderMW(objectRepository,"user")
+    invAuthMW(objectRepository, "index"),
+    getUser(objectRepository),
+    editUser(objectRepository),
+    renderMW(objectRepository, "user")
   );
 
   /**
    * Delete user then redirect to /index
    */
-
   app.use(
-    "/profile/profile/del/:userid",
-    //authMW(objectRepository),
-    //getUser(objectRepository),
-    //delUser(objectRepository),
-    function(req, res, next) {
-      return res.redirect("/index");
-    }
+    "/profile/del/:userid",
+    invAuthMW(objectRepository, "index"),
+    delUser(objectRepository),
+    logoutMW(objectRepository)
   );
 };

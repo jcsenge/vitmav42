@@ -1,32 +1,32 @@
 /**
  *  Creates the user if the email is not already taken
- */
-const requireOption = require('../generic/requireOption');
-module.exports = function (objectrepository) {
+ **/
+const requireOption = require("../generic/requireOption");
 
-  var UserModel = requireOption(objectrepository, 'userModel');
+module.exports = objRepo => async (req, res, next) => {
+  if (
+    typeof req.body.name === "undefined" ||
+    typeof req.body.password === "undefined" ||
+    typeof req.body.email === "undefined"
+  ) {
+    return next();
+  }
 
-  return function (req, res, next) {
+  const UserModel = requireOption(objRepo, "userModel");
 
-    //lets find the user
-    UserModel.findOne({
-      email: req.body.email
-    }, function (err, result) {
+  const eredmeny = await UserModel.findOne({ email: req.body.email }).exec();
 
-      if ((err) || (result !== null)) {
-        res.tpl.error.push('Your email address is already registered!');
-        return next();
-      }
+  //javascript falsy
+  if (eredmeny) {
+    res.tpl.error.push("Your email address is already registered!");
+    return next();
+  }
 
-      //create user
-      var newUser = new UserModel();
-      newUser.name = req.body.name;
-      newUser.email = req.body.email;
-      newUser.password = req.body.password;
-      newUser.save(function (err) {
-        //redirect to /index
-        return res.redirect('/index');
-      });
-    });
-  };
+  const newUser = new UserModel({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+  });
+  await newUser.save();
+  return res.redirect("/index");
 };

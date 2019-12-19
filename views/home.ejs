@@ -5,10 +5,11 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3"><%= poems[0]._poet.ref %></h1>
+          <h1 class="display-3"><%= user.name %></h1>
           <p>
-            Eius, modi! Illum reprehenderit fugit dolore recusandae laboriosam,
-            hic nemo quos.
+            Ha én kocka volnék, akkora nagy lennék
+          </br>
+            Minden éjjel négyig kernelt fordítanék...
           </p>
         </div>
       </div>
@@ -34,10 +35,12 @@
              <%= poem.text %>
             </p>
             <div class="btn-group" role="group">
+              <a href="/home/del/<%= poem._id %>">
               <button type="button" class="btn btn-sm btn-outline-secondary">
                 <i class="material-icons md-24">delete</i>
               </button>
-              <a href="/home/new">
+            </a>
+              <a href="/home/edit/<%= poem._id %>">
                 <button type="button" class="btn btn-sm btn-outline-secondary">
                   <i class="material-icons md-24">edit</i>
                 </button>

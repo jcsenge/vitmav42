@@ -1,37 +1,41 @@
-  
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-const session = require('express-session');
+const bodyParser = require("body-parser");
+const session = require("express-session");
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.use(express.static('static'));
+app.use(express.static("static"));
 
 app.use(
-    session({
-        secret: 'secret'
-    })
-    );
-        app.use(function (req, res, next) {
-            res.tpl = {};
-            res.tpl.error = [];
-          
-            return next();
-          });
+  session({
+    secret: "123",
+    cookie: {
+      maxAge: 60000
+    },
+    resave: true,
+    saveUninitialized: false
+  })
+);
+
+app.use(function(req, res, next) {
+  res.tpl = {};
+  res.tpl.error = [];
+  return next();
+});
 
 // Load routing
-require('./routes/user')(app);
-require('./routes/poems')(app);
-require('./routes/outside')(app);
+require("./routes/user")(app);
+require("./routes/poems")(app);
+require("./routes/outside")(app);
 
 app.use((err, req, res, next) => {
-    res.end('Problem...');
-    console.log(err);
+  res.end("Problem...");
+  console.log(err);
 });
 
 app.listen(3000, function() {
-    console.log('Hello :3000');
+  console.log("Hello :3000");
 });

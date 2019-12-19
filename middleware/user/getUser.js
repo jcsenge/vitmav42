@@ -1,23 +1,16 @@
 /**
  * Loads the user data, checks whether ok
  */
-const requireOption = require('../generic/requireOption');
+const requireOption = require("../generic/requireOption");
 module.exports = function(objectrepository) {
-  
-  
-  var userModel = requireOption(objectrepository, 'userModel');
+  var UserModel = requireOption(objectrepository, "userModel");
   return function(req, res, next) {
-    if ((typeof req.param('userid') === 'undefined') || (req.param('userid') === 'null')) {
-      return next();
-    }
-    userModel.findOne({_id: req.param('userid')}, function (err, result) {
-      if (err) {
+    UserModel.findOne({ _id: req.params.userid }, (err, user) => {
+      if (err || !user) {
         return next(err);
       }
-
-      res.tpl.user = result;
-
+      res.locals.user = user;
       return next();
-  });
-};
+    });
+  };
 };

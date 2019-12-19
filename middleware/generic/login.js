@@ -1,43 +1,32 @@
-
-var requireOption = require('../generic/requireOption');
-
 /**
  * Checks user data and if correct redirects to /home
  */
+const requireOption = require("../generic/requireOption");
 
-module.exports = function (objectrepository) {
+module.exports = objRepo => async (req, res, next) => {
+  if (
+    typeof req.body.email === "undefined" ||
+    typeof req.body.password === "undefined"
+  ) {
+    return next();
+  }
 
-    var userModel = requireOption(objectrepository, 'userModel');
-  
-    return function (req, res, next) {
-  
-        console.log("BAAAAAAAAAAAA");
-      //not enough parameter
-      if ((typeof req.body === 'undefined') || (typeof req.body.email === 'undefined') ||
-        (typeof req.body.password === 'undefined')) {
-        return next();
-      }
-  
-      //lets find the user
-      userModel.findOne({
-        email: req.body.email
-      }, function (err, result) {
-        if ((err) || (!result)) {
-          res.tpl.error.push('Your email address is not registered!');
-          return next();
-        }
-  
-        //check password
-        if (result.password !== req.body.password) {
-          res.tpl.error.push('Wrong password!');
-          return next();
-        }
-  
-        //login is ok, save id to session
-        req.session.userid = result._id;
+  const UserModel = requireOption(objRepo, "userModel");
 
-        return res.redirect('/home');
-      });
-    };
-  
-  };
+  const result = await UserModel.findOne({ email: req.body.email }).exec();
+
+  //javascript falsy
+  if (!result) {
+    res.tpl.error.push("Your email address is not registered!");
+    return next();
+  }
+
+  //check password
+  if (result.password !== req.body.password) {
+    res.tpl.error.push("Wrong password!");
+    return next();
+  }
+  req.session.loggedin = true;
+  req.session.user = result;
+  return res.redirect("/home");
+};
