@@ -4,11 +4,11 @@
 const requireOption = require("../generic/requireOption");
 
 module.exports = function(objectrepository) {
-  const PoemModel = requireOption(objectrepository, "poemModel");
   return function(req, res, next) {
     if(typeof req.body.tofind === 'undefined') {
-       return next(); 
-      }
+      return next(); 
+    }
+    const PoemModel = requireOption(objectrepository, "poemModel");
     PoemModel.find({ title: req.body.tofind }, (err, poem) => {
       if (err || !poem) {
         return next(err);
